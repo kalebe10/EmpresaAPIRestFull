@@ -111,5 +111,5 @@ flask run
 ou
 
 ```bash
-flask --degub run
+flask --debug run
 ```
