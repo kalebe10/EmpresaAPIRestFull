@@ -8,3 +8,4 @@ Empresa = Table("empresa", meta,
                 Column("nome_razao",String(120), nullable=False),
                 Column("nome_fantasia",String(120), nullable=False),
                 Column("cnae",String(10), nullable=False))
+

@@ -1,8 +1,8 @@
 from flask import jsonify
-from sqlalchemy import asc, desc, insert
+from sqlalchemy import asc, desc, func, insert
 
 from base_model import query_delete_base, query_insert_base, query_update_base
-from database import db
+from database import db, get_columns_base
 from mock_empresa import mock_empresa
 from model import Empresa
 from utils.converters import (is_cnpj_valido, query_to_dict,
@@ -57,6 +57,13 @@ class EmpresaController:
         offset = (start - 1) * limit
         query = db.query(self.model).order_by(sort_direction).offset(offset).limit(limit).all()
         return query_to_list_of_dicts(query)
+
+    def get_paginate(self):
+        query = db.query(self.model).count()
+        paginas = query / 25
+        if paginas > int(paginas):
+            paginas = paginas + 1
+        return {"pages": int(paginas)}
     
     def get_empresa_id(self, empresa_id):
         empresa = db.query(self.model).filter(self.model.c.id==empresa_id).first()
@@ -71,3 +78,9 @@ class EmpresaController:
         res = db.execute(sql)
         db.commit()
         return empresas
+
+
+
+def get_lookup(table: str, filter: dict, limit: int = 0):
+
+    return query_to_list_of_dicts(get_columns_base(db, table, filter, limit))

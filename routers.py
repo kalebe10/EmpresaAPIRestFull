@@ -1,14 +1,16 @@
 from typing import List
 
-from flask import jsonify
+from flask import jsonify, request
 from flask_jwt_extended import create_access_token, jwt_required
 from flask_openapi3 import APIBlueprint, Tag
 
-from controller import EmpresaController
-from serializer import (EmpresaGetSerializer, EmpresaInputSerializer,
-                        EmpresaParamSerializer, EmpresaPatchSerializer,
-                        EmpresaSerializer, LoginSerializer, TokenSerializer,
+from controller import EmpresaController, get_lookup
+from serializer import (EmpresaGetPaginateSerializer, EmpresaGetSerializer,
+                        EmpresaInputSerializer, EmpresaParamSerializer,
+                        EmpresaPatchSerializer, EmpresaSerializer,
+                        LimitSerializer, LoginSerializer, TokenSerializer,
                         Unauthorized)
+from utils.query_filter import prepary_filter
 
 jwt = {
     "type": "http",
@@ -49,6 +51,12 @@ def get_list(query:EmpresaGetSerializer):
     res = EmpresaController().get_items(**vars(query))
     return res
 
+@api.get("/empresa/pages", tags=[empresa_tag])
+@jwt_required()
+def get_list_paginate():
+    res = EmpresaController().get_paginate()
+    return res
+
 @api.get("/empresa/<int:id>", tags=[empresa_tag], responses={200:EmpresaSerializer})
 @jwt_required()
 def get(path:EmpresaParamSerializer):
@@ -80,3 +88,21 @@ def put(path:EmpresaParamSerializer,body:EmpresaPatchSerializer):
 def delete(path:EmpresaParamSerializer):
     id = path.id
     return EmpresaController().delete_empresa(id)
+
+
+@api.post("/lookup/filter", responses={201:EmpresaSerializer})
+@jwt_required()
+def get_lookup_filter(path:LimitSerializer):
+    limit = path.limit
+    data = request.get_json(force=True)
+    params = prepary_filter(data.items())
+    if len(params) and limit > 1:
+        limit = 0
+    res = get_lookup("empresa", params, limit)
+    return res
+
+@api.post("/requestReport", responses={201:EmpresaSerializer})
+# @jwt_required()
+def request_report():
+    res = EmpresaController().get_items()
+    return res

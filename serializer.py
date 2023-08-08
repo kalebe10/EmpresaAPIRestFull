@@ -33,6 +33,8 @@ class EmpresaGetSerializer(BaseModel):
     sort:str="id"
     dir:str="asc"
 
+class EmpresaGetPaginateSerializer(BaseModel):
+    page:int = 1
 
 class EmpresaParamSerializer(BaseModel):
     id:int
@@ -44,3 +46,6 @@ class LoginSerializer(BaseModel):
     
 class TokenSerializer(BaseModel):
     access_token:str
+
+class LimitSerializer(BaseModel):
+    limit:int = 10

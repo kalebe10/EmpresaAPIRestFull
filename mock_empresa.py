@@ -10,7 +10,7 @@ def mock_empresa(qtd:int=100):
     for _ in range(qtd):
         cnpj = fake.cnpj()
         nome_razao = fake.company()
-        nome_fantasia = fake.company_suffix()
+        nome_fantasia = fake.company()
         cnae = random.choice(cnae_list)
         empresas.append({
             "cnpj": cnpj,
