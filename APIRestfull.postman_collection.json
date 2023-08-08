@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "6f52fb2c-d24e-4c29-bd36-2d56d01d93d3",
+		"name": "APIRestfull",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6819624",
+		"_collection_link": "https://red-meadow-2993.postman.co/workspace/kalebe~baaa2ae6-b5da-4dee-85e7-34acba5d823a/collection/6819624-6f52fb2c-d24e-4c29-bd36-2d56d01d93d3?action=share&creator=6819624&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"homolog\",\r\n    \"password\": \"Cz[b77SUUo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/token",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/api/empresa?start=2&limit=20&sort=id&dir=asc",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empresa"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "sort",
+							"value": "id"
+						},
+						{
+							"key": "dir",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cnae\": \"string\",\r\n    \"cnpj\": \"string\",\r\n    \"nome_fantasia\": \"string\",\r\n    \"nome_razao\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/empresa",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"empresa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa/<int:id>",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}api/empresa/10",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"empresa",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa/<int:id>",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}api/empresa/11",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"empresa",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa/<int:id>",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cnae\": \"CNAE-TESTE\",\r\n  \"nome_fantasia\": \"EMPRESA TESTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/empresa/11",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"empresa",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GERADOR DE EMPRESAS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}api/empresa_mock",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"empresa_mock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOOKUP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/lookup/filter?teste=tesea",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"lookup",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "teste",
+							"value": "tesea"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}api/empresa/page/1",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"empresa",
+						"page",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var base = pm.variables.get(\"base_url\");",
+					"const postRequest = {",
+					"    url: base + 'api/token',",
+					"    method: 'POST',",
+					"    timeout: 0,",
+					"    header: {",
+					"        \"Content-Type\": \"application/json\"",
+					"    },",
+					"    body: {",
+					"        mode: 'raw',",
+					"        raw: JSON.stringify({",
+					"            username: \"homolog\",",
+					"            password: \"Cz[b77SUUo\"",
+					"        })",
+					"    }",
+					"};",
+					"pm.sendRequest(postRequest, function (err, res) {",
+					"    var responseJson = res.json();",
+					"    console.log(responseJson);",
+					"    // pm.environment.set('ACCESS_TOKEN', responseJson['access_token']);",
+					"    pm.collectionVariables.set(\"ACCESS_TOKEN\", responseJson['access_token']);",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:5000/",
+			"type": "string"
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

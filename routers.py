@@ -100,9 +100,3 @@ def get_lookup_filter(path:LimitSerializer):
         limit = 0
     res = get_lookup("empresa", params, limit)
     return res
-
-@api.post("/requestReport", responses={201:EmpresaSerializer})
-# @jwt_required()
-def request_report():
-    res = EmpresaController().get_items()
-    return res
