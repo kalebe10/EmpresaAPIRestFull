@@ -32,7 +32,7 @@ api = APIBlueprint(
 )
 
 
-@api.post('/token', methods=['POST'], responses={200:TokenSerializer})
+@api.post('/token', responses={200:TokenSerializer})
 def login(body:LoginSerializer):
     payload = vars(body)
     username = payload['username']
