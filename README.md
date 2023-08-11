@@ -3,7 +3,6 @@
 Apresentação de uma APIRestFull feito em flask com documentaçao em Swagger
 Projeto feito em Python versão 3.7
 Api contém 9 endpoints sendo
-
 1. GET /api/empresa
    - params:
      - start
@@ -63,6 +62,9 @@ Api contém 9 endpoints sendo
 9. DELETE /api/empresa/<int:id>
    - endpoint para deletar a empresa
    - parametro do tipo path repassando o id da empresa
+
+- Para acessar a documentação swagger /openapi
+     - exemplo localhost:5000/openapi
 
 Na raiz do projeto contém a coleção do postman para a API
 APIRestfull.postman_collection.json
